@@ -1,5 +1,6 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserInfo } from '../users.model';
+import { CustomValidators } from '../../../shared/validators/custom-validators';
 
 export enum UserFormControls {
   Id = 'id',
@@ -21,8 +22,8 @@ export class UserForm extends FormGroup {
       [UserFormControls.LastName]: new FormControl(user?.lastName, Validators.required),
       [UserFormControls.Email]: new FormControl(user?.email, [Validators.required, Validators.email]),
       [UserFormControls.Type]: new FormControl(user?.type, Validators.required),
-      [UserFormControls.Password]: new FormControl(user?.password, [Validators.required]),
-      [UserFormControls.RepeatPassword]: new FormControl(user?.password, [Validators.required])
+      [UserFormControls.Password]: new FormControl(user?.password, Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.numberAndLetter])),
+      [UserFormControls.RepeatPassword]: new FormControl(user?.password, Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.numberAndLetter]))
     });
   }
 }

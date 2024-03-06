@@ -1,8 +1,7 @@
 import { AfterContentInit, ContentChildren, Directive, QueryList } from '@angular/core';
 import { merge } from 'rxjs';
 import { IsControlEqualToDirective } from './is-control-equal-to.directive';
-
-export const NOT_EQUAL_CONTROL_ERROR_KEY = 'notEqual';
+import { CustomValidatorsErrorKeys } from '../../../validators/custom-validators';
 
 @Directive({
   standalone: true,
@@ -40,8 +39,8 @@ export class EqualControlsContainerDirective<T> implements AfterContentInit {
 
   private markDirsAsInvalid(equalDirectivesArr: IsControlEqualToDirective[]): void {
     equalDirectivesArr.forEach((directive) => {
-      if (!directive.control.hasError(NOT_EQUAL_CONTROL_ERROR_KEY)) {
-        directive.control.setErrors({ ...(directive.control.errors || {}), [NOT_EQUAL_CONTROL_ERROR_KEY]: true }, { emitEvent: false });
+      if (!directive.control.hasError(CustomValidatorsErrorKeys.NotEqualControl)) {
+        directive.control.setErrors({ ...(directive.control.errors || {}), [CustomValidatorsErrorKeys.NotEqualControl]: true }, { emitEvent: false });
         directive.errorRenderer?.validate();
       }
     });
@@ -49,8 +48,8 @@ export class EqualControlsContainerDirective<T> implements AfterContentInit {
 
   private markDirsAsValid(equalDirectivesArr: IsControlEqualToDirective[]): void {
     equalDirectivesArr.forEach((directive) => {
-      if (directive.control.hasError(NOT_EQUAL_CONTROL_ERROR_KEY)) {
-        const { [NOT_EQUAL_CONTROL_ERROR_KEY]: removedError, ...restErrors } = directive.control.errors || {};
+      if (directive.control.hasError(CustomValidatorsErrorKeys.NotEqualControl)) {
+        const { [CustomValidatorsErrorKeys.NotEqualControl]: removedError, ...restErrors } = directive.control.errors || {};
         directive.control.setErrors(Object.keys(restErrors).length ? restErrors : null);
 
         if (!Object.keys(restErrors).length) {

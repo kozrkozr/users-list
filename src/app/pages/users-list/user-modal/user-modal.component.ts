@@ -12,7 +12,6 @@ import { ControlErrorsRendererService } from '../../../shared/directives/control
 import { ServerSideErrorHandlerService } from '../../../shared/services/server-side-error-handler.service';
 import {
   EqualControlsContainerDirective,
-  NOT_EQUAL_CONTROL_ERROR_KEY
 } from '../../../shared/directives/validators/is-control-equal-to/equal-controls-container.directive';
 import { IsControlEqualToDirective } from '../../../shared/directives/validators/is-control-equal-to/is-control-equal-to.directive';
 import { SelectComponent } from '../../../shared/components/select/select.component';
@@ -21,6 +20,7 @@ import { NotificationsService } from '../../../shared/components/notifications/n
 import { NotificationsModule } from '../../../shared/components/notifications/notifications.module';
 import { ReplaySubject } from 'rxjs';
 import { indicate } from '../../../shared/rxjs-operators/indicate';
+import { CustomValidatorsErrorKeys } from '../../../shared/validators/custom-validators';
 
 @Component({
   selector: 'app-user-modal',
@@ -53,7 +53,7 @@ export class UserModalComponent implements OnInit {
 
   readonly userTypes = UserType;
   readonly userFormControls = UserFormControls;
-  readonly passwordMismatchErrorDict = { [NOT_EQUAL_CONTROL_ERROR_KEY]: 'Password mismatch' };
+  readonly passwordMismatchErrorDict = { [CustomValidatorsErrorKeys.NotEqualControl]: 'Password mismatch' };
 
   isPendingRequest$ = new ReplaySubject<boolean>();
 

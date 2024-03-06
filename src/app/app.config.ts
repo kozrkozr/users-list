@@ -14,7 +14,13 @@ export const appConfig: ApplicationConfig = {
         email: 'Invalid email format',
         get maxlength(): ExtractErrorMessageFn<{ requiredLength: number; actualLength: number }> {
           return (error: { requiredLength: number; actualLength: number }) => `Max length is ${error.requiredLength} symbols`;
-        }
+        },
+        get minlength(): ExtractErrorMessageFn<{ requiredLength: number; actualLength: number }> {
+          return (error: { requiredLength: number; actualLength: number }) => {
+            return `Min length is ${error.requiredLength} symbols`;
+          };
+        },
+        numberAndLetter: 'At least one number and one letter'
       }
     }
   ]
