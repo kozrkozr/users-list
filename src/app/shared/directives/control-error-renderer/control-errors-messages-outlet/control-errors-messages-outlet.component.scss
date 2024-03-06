@@ -1,0 +1,10 @@
+.errors-messages {
+  &__error {
+    font-size: 13px;
+    color: var(--color-pink);
+
+    &:first-child {
+      margin-top: 4px;
+    }
+  }
+}

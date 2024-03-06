@@ -1,0 +1,40 @@
+<div class="h-100 overflow-hidden d-flex flex-column p-4">
+  <div class="d-flex justify-content-end">
+    <button class="btn btn--accent mb-4" (click)="openUserModal()">Create User</button>
+  </div>
+
+  <div class="custom-table__container">
+    <table class="custom-table w-100">
+      <thead>
+        <tr>
+          <th *ngFor="let column of columns">
+            {{ column }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="custom-table__row--hoverable" *ngFor="let user of users$ | async" (click)="openUserModal(user)">
+          <td>
+            {{ user.username }}
+          </td>
+
+          <td>
+            {{ user.firstName }}
+          </td>
+
+          <td>
+            {{ user.lastName }}
+          </td>
+
+          <td>
+            {{ user.email }}
+          </td>
+
+          <td>
+            {{ user.type }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

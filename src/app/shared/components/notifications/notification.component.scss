@@ -1,0 +1,25 @@
+:host {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.notification {
+  width: 281px;
+  height: 56px;
+  color: white;
+  font-size: 13px;
+  padding: 22px 26px;
+  z-index: 9999;
+  border-radius: 6px;
+
+  &--success {
+    background-color: var(--color-green);
+    box-shadow: 0px 10px 15px var(--color-green-transparent);
+  }
+
+  &--error {
+    background-color: var(--color-pink);
+    box-shadow: 0px 10px 15px var(--color-pink-transparent);
+  }
+}

@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'styles/variables';
+@import 'styles/utilities';
+@import 'styles/components';
+
+@import '@angular/cdk/overlay-prebuilt.css';
+
+html,
+body {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica', 'Roboto', sans-serif;
+  color: var(--color-dark);
+  background-color: var(--color-primary);
+}
+
+.cdk-dialog-container {
+  outline: none;
+}

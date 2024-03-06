@@ -1,0 +1,9 @@
+:host {
+  font-size: 13px;
+  padding: 8px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-background-alt);
+  }
+}

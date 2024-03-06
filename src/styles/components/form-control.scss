@@ -1,0 +1,27 @@
+.form-control {
+  height: 46px;
+  font-size: 13px;
+  font-weight: 300;
+  border-radius: 6px;
+  background-color: var(--color-light);
+
+  input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 16px;
+  }
+
+  &__prefix {
+    padding-left: 16px;
+  }
+
+  &.has-rendered-errors {
+    border: 1px solid var(--color-pink);
+  }
+}
+
+.form-control-label {
+  font-size: 13px;
+  margin-bottom: 4px;
+}

@@ -1,0 +1,19 @@
+<div class="select h-100 w-100" [class.select--opened]="isOpen">
+  <button class="select__trigger w-100 h-100" (click)="isOpen = !isOpen" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+    {{ value || placeholder }}
+  </button>
+
+  <div class="select__triangle"></div>
+</div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen"
+  [cdkConnectedOverlayWidth]="trigger.elementRef.nativeElement.clientWidth"
+  (overlayOutsideClick)="isOpen = false"
+>
+  <div class="select__options d-flex flex-column w-100">
+    <ng-content select="app-option"></ng-content>
+  </div>
+</ng-template>

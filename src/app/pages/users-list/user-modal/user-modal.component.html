@@ -1,0 +1,76 @@
+<div class="user-modal p-6">
+  <div class="user-modal__title d-flex justify-content-between align-items-center">
+    <span>
+      {{ modalTitle }}
+    </span>
+
+    <span class="user-modal__cancel-icon cursor-pointer" (click)="dialogRef.close()"></span>
+  </div>
+
+  <div class="user-modal__form" [formGroup]="userForm">
+    <div class="mb-4">
+      <div class="form-control-label">Username*</div>
+      <app-input [formControlName]="userFormControls.Username" appControlErrorRenderer />
+    </div>
+
+    <div class="mb-4">
+      <div class="form-control-label">First name*</div>
+      <app-input [formControlName]="userFormControls.FirstName" appControlErrorRenderer />
+    </div>
+
+    <div class="mb-4">
+      <div class="form-control-label">Last name*</div>
+      <app-input [formControlName]="userFormControls.LastName" appControlErrorRenderer />
+    </div>
+
+    <div class="mb-4">
+      <div class="form-control-label">Email*</div>
+      <app-input [formControlName]="userFormControls.Email" appControlErrorRenderer>
+        <span class="user-modal__email-prefix" input-prefix>&#64;</span>
+      </app-input>
+    </div>
+
+    <div class="mb-4">
+      <div class="form-control-label">Type*</div>
+      <app-select [formControlName]="userFormControls.Type" appControlErrorRenderer>
+        <app-option *ngFor="let userType of userTypes | keyvalue" [value]="userType.key">{{ userType.key }}</app-option>
+      </app-select>
+    </div>
+
+    <ng-container appEqualControlsContainer>
+      <div class="mb-4">
+        <div class="form-control-label">Password*</div>
+        <app-input
+          [formControlName]="userFormControls.Password"
+          appControlErrorRenderer
+          appIsControlEqualTo
+          [errorsMessagesDict]="passwordMismatchErrorDict"
+          type="password"
+        />
+      </div>
+
+      <div class="mb-4">
+        <div class="form-control-label">Repeat password*</div>
+        <app-input
+          [formControlName]="userFormControls.RepeatPassword"
+          appControlErrorRenderer
+          appIsControlEqualTo
+          [errorsMessagesDict]="passwordMismatchErrorDict"
+          type="password"
+        />
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="user-modal__actions w-100 d-flex {{ isEditing ? 'justify-content-between' : 'justify-content-center' }}">
+    <ng-container *ngIf="isEditing; else createBtn">
+      <button class="btn btn--danger" (click)="deleteUser()" [disabled]="isLoading">Delete</button>
+
+      <button class="btn btn--accent" (click)="save()" [disabled]="isLoading">Save</button>
+    </ng-container>
+
+    <ng-template #createBtn>
+      <button class="btn btn--accent" (click)="save()" [disabled]="isLoading">Create</button>
+    </ng-template>
+  </div>
+</div>
