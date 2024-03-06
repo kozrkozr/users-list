@@ -40,7 +40,10 @@ export class EqualControlsContainerDirective<T> implements AfterContentInit {
   private markDirsAsInvalid(equalDirectivesArr: IsControlEqualToDirective[]): void {
     equalDirectivesArr.forEach((directive) => {
       if (!directive.control.hasError(CustomValidatorsErrorKeys.NotEqualControl)) {
-        directive.control.setErrors({ ...(directive.control.errors || {}), [CustomValidatorsErrorKeys.NotEqualControl]: true }, { emitEvent: false });
+        directive.control.setErrors(
+          { ...(directive.control.errors || {}), [CustomValidatorsErrorKeys.NotEqualControl]: true },
+          { emitEvent: false }
+        );
         directive.errorRenderer?.validate();
       }
     });
@@ -52,9 +55,7 @@ export class EqualControlsContainerDirective<T> implements AfterContentInit {
         const { [CustomValidatorsErrorKeys.NotEqualControl]: removedError, ...restErrors } = directive.control.errors || {};
         directive.control.setErrors(Object.keys(restErrors).length ? restErrors : null);
 
-        if (!Object.keys(restErrors).length) {
-          directive.errorRenderer?.removeErrors();
-        }
+        directive.errorRenderer?.validate();
       }
     });
   }
